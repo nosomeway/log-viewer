@@ -20,6 +20,7 @@
 ```text
 log-viewer/
 ├── requirements.txt
+├── run.bat             # Windows 一键启动（勿关窗口）
 ├── .env.example
 ├── .gitignore
 ├── app/
@@ -41,11 +42,15 @@ pip install -r requirements.txt
 
 ## 运行
 
+**必须先启动后端**，再在浏览器访问；否则会出现「无法访问此网站 / 拒绝了连接请求」（本机没有程序监听该端口）。
+
+Windows 可在项目根目录**双击 `run.bat`**，或在 PowerShell 中：
+
 ```bash
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-浏览器打开：<http://127.0.0.1:8000/>  
+浏览器打开：<http://127.0.0.1:8000/>（保持运行 `uvicorn` 的窗口不要关。）  
 左侧列出 `logs/` 下文件，点击后在右侧查看；支持末尾行数（tail）或填写 offset/limit 分页（仅对已读入字节范围内解码后的行生效）。
 
 ## 环境变量
